@@ -107,6 +107,22 @@ async function empHandler(){
         } else {
             return;
         };
+    let continueRes = await contQuestion();
+        if (continueRes == 'Create new Engineer') {
+            let employeeRes = await employeePrompt();
+            let engineerRes = await engineerPrompt();
+            let engineer = new Engineer (employeeRes.name, employeeRes.id, employeeRes.email, 'Engineer', engineerRes.git)
+            console.log(engineer);
+        } else if (continueRes == 'Create new Intern') {
+            let employeeRes = await employeePrompt();
+            let internRes = await internPrompt();
+            let intern = new Intern (employeeRes.name, employeeRes.id, employeeRes.email, 'Intern', internRes.school)
+            console.log(intern);
+        } else {
+            return;
+        }
+
+        
 }
 
 empHandler()
