@@ -1,28 +1,14 @@
 {
-  "name": "team-profile-generator",
+  "name": "static-site",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kokkonut/team-profile-generator.git"
-  },
-  "author": "Nicolas Fraenkel",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Kokkonut/team-profile-generator/issues"
-  },
-  "homepage": "https://github.com/Kokkonut/team-profile-generator#readme",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "inquirer": "^9.1.4"
-  },
-  "devDependencies": {
-    "jest": "^29.3.0"
+    "inquirer": "^8.2.4"
   }
 }
