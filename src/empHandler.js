@@ -124,6 +124,9 @@ async function empHandler() {
     } else {
         return;
     };
+
+
+
 }
 
 //add other employees
@@ -146,7 +149,6 @@ async function empAdd() {
         return;
     }
     empAdd();
-
 }
 
 module.exports = {

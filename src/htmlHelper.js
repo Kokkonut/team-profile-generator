@@ -103,4 +103,11 @@ const generateHTML = (managers, engineers, interns) => {
 
 </html>
     `
+};
+
+module.exports = {
+    generateManager,
+    generateEngineer,
+    generateIntern,
+    generateHTML,
 }
