@@ -36,6 +36,14 @@ const managerPrompt = () => {
             type: 'input',
             name: 'officeNum',
             message: 'Please enter your office phone number',
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    console.log('Please enter an office number!')
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
     ])
 }
@@ -46,16 +54,41 @@ const employeePrompt = () => {
             type: 'input',
             name: 'name',
             message: 'Please enter name',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter name!");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: 'Please enter email',
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log('Please enter an email!')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: 'Please enter ID',
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    console.log("Please enter ID!")
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
     ])
 };
@@ -105,7 +138,7 @@ async function empAdd() {
     } else {
         return;
     }
-     await empAdd();
+    await empAdd();
 }
 
 module.exports = {

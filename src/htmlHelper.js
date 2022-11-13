@@ -1,3 +1,4 @@
+//card for manager
 const generateManager = (manager) => {
     return `
    
@@ -15,7 +16,7 @@ const generateManager = (manager) => {
 
   `
 };
-
+//card for engineer
 const generateEngineer = (engineer) => {
     return `
     <div class="col s12 m4">
@@ -25,13 +26,13 @@ const generateEngineer = (engineer) => {
           <p>Role: ${engineer.role}</p>
           <p>ID: ${engineer.id}</p>
           <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-          <p>GitHub: ${engineer.git}
+          <p>GitHub: <a href="https://www.github.com/${engineer.git}" target="_blank">${engineer.git}</a></p>
         </div>
       </div>
     </div>
   `
 };
-
+//card of intern
 const generateIntern = (intern) => {
     return `
     <div class="col s12 m4">
@@ -47,7 +48,7 @@ const generateIntern = (intern) => {
     </div>
   `
 };
-
+//index.html 
 const generateHTML = (managers, engineers, interns) => {
     return `
     <!DOCTYPE html>
