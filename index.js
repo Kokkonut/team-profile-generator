@@ -5,7 +5,7 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 
 const setup = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'setupRes',
@@ -19,7 +19,7 @@ const setup = () => {
 };
 
 const contQuestion = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'userSelect',
@@ -34,7 +34,7 @@ const contQuestion = () => {
 };
 
 const managerPromt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'nameMan',
@@ -59,7 +59,7 @@ const managerPromt = () => {
 }
 
 const employeePrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -79,7 +79,7 @@ const employeePrompt = () => {
 };
 
 const engineerPrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'git',
@@ -89,7 +89,7 @@ const engineerPrompt = () => {
 };
 
 const internPrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'school',
@@ -98,36 +98,36 @@ const internPrompt = () => {
     ])
 };
 
-async function empHandler(){
+async function empHandler() {
     let initSetup = await setup();
-        if (initSetup.setupRes === 'Yes') {
-            let managerRes = await managerPromt();
-            let manager = new Manager (managerRes.nameMan, managerRes.idMan, managerRes.emailMan, 'Manager', managerRes.officeNum);
-            console.log(manager);
-            empAdd();
-        } else {
-            return;
-        };
-    }
+    if (initSetup.setupRes === 'Yes') {
+        let managerRes = await managerPromt();
+        let manager = new Manager(managerRes.nameMan, managerRes.idMan, managerRes.emailMan, 'Manager', managerRes.officeNum);
+        console.log(manager);
+        empAdd();
+    } else {
+        return;
+    };
+}
 
 async function empAdd() {
     let continueRes = await contQuestion();
-        if (continueRes.userSelect == 'Create new Engineer') {
-            console.log('test')
-            let employeeRes = await employeePrompt();
-            let engineerRes = await engineerPrompt();
-            let engineer = new Engineer (employeeRes.name, employeeRes.id, employeeRes.email, 'Engineer', engineerRes.git)
-            console.log(engineer);
-        } else if (continueRes.userSelect == 'Create new Intern') {
-            let employeeRes = await employeePrompt();
-            let internRes = await internPrompt();
-            let intern = new Intern (employeeRes.name, employeeRes.id, employeeRes.email, 'Intern', internRes.school)
-            console.log(intern);
-        } else {
-            return;
-        }
-empAdd();
-        
+    if (continueRes.userSelect == 'Create new Engineer') {
+        console.log('test')
+        let employeeRes = await employeePrompt();
+        let engineerRes = await engineerPrompt();
+        let engineer = new Engineer(employeeRes.name, employeeRes.id, employeeRes.email, 'Engineer', engineerRes.git)
+        console.log(engineer);
+    } else if (continueRes.userSelect == 'Create new Intern') {
+        let employeeRes = await employeePrompt();
+        let internRes = await internPrompt();
+        let intern = new Intern(employeeRes.name, employeeRes.id, employeeRes.email, 'Intern', internRes.school)
+        console.log(intern);
+    } else {
+        return;
+    }
+    empAdd();
+
 }
 
 empHandler()
