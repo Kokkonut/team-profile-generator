@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { empHandler, empAdd, managerArr, engineerArr, internArr } = require('./src/empHandler');
+const { empAdd, managerArr, engineerArr, internArr } = require('./src/empHandler');
 const { generateHTML } = require('./src/htmlHelper');
 
 const writeTofile = (data) => {
@@ -8,9 +8,8 @@ const writeTofile = (data) => {
 } 
 
 async function init() {
-    await empHandler();
     await empAdd();
     writeTofile(generateHTML(managerArr, engineerArr, internArr))
-}
+};
 
 init();

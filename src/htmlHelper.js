@@ -1,6 +1,6 @@
 const generateManager = (manager) => {
     return `
-    <div class="row">
+   
     <div class="col s12 m4">
       <div class="card small blue-grey darken-1">
         <div class="card-content white-text">
@@ -12,13 +12,12 @@ const generateManager = (manager) => {
         </div>
       </div>
     </div>
-  </div>
+
   `
 };
 
 const generateEngineer = (engineer) => {
     return `
-    <div class="row">
     <div class="col s12 m4">
       <div class="card small blue-grey darken-1">
         <div class="card-content white-text">
@@ -26,17 +25,15 @@ const generateEngineer = (engineer) => {
           <p>Role: ${engineer.role}</p>
           <p>ID: ${engineer.id}</p>
           <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-          <p>GitHub: ${manager.git}
+          <p>GitHub: ${engineer.git}
         </div>
       </div>
     </div>
-  </div>
   `
 };
 
 const generateIntern = (intern) => {
     return `
-    <div class="row">
     <div class="col s12 m4">
       <div class="card small blue-grey darken-1">
         <div class="card-content white-text">
@@ -48,7 +45,6 @@ const generateIntern = (intern) => {
         </div>
       </div>
     </div>
-  </div>
   `
 };
 
@@ -62,7 +58,9 @@ const generateHTML = (managers, engineers, interns) => {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/dist/style.css">
     <title>Team profile viewer</title>
+    </head>
 
 <body>
     <header>
@@ -75,22 +73,22 @@ const generateHTML = (managers, engineers, interns) => {
 
     <main>
         <div class="row">
-            <div class="col s12 m4">
+            <div class="col s12">
                 <div class='teal'>Manager</div>
                 <div class='teal lighten-5'>
-                    ${managers.map(generateManager).join}
+                    ${managers.map(generateManager).join(' ')}
                 </div>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12">
                 <div class='light-green'>Engieer</div>
                 <div class='light-green lighten-5'>
-                    ${engineers.map(generateEngineer).join}
+                    ${engineers.map(generateEngineer).join(' ')}
                 </div>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12">
                 <div class='yellow'>Intern</div>
                 <div class='yellow lighten-5'>
-                    ${interns.map(generateIntern).join}
+                    ${interns.map(generateIntern).join(' ')}
                 </div>
             </div>
         </div>
