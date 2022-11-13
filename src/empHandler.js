@@ -1,11 +1,21 @@
+// Dependancies
 const inquirer = require('inquirer');
-const Employee = require('./lib/Employee');
-const Manager = require('./lib/Manager');
-const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Engineer');
+const Employee = require('../lib/Employee');
+const Manager = require('../lib/Manager');
+const Intern = require('../lib/Intern');
+const Engineer = require('../lib/Engineer');
+const { Module } = require('module');
 
+//Hoisted vars
+let managerArr = [];
+let engineerArr = [];
+let internArr = [];
+
+//Inquirer prompts
+
+//init setup
 const setup = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'setupRes',
@@ -18,8 +28,9 @@ const setup = () => {
     ])
 };
 
+//what employee are you adding?
 const contQuestion = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'userSelect',
@@ -33,8 +44,9 @@ const contQuestion = () => {
     ])
 };
 
+//create manager
 const managerPromt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'nameMan',
@@ -57,9 +69,9 @@ const managerPromt = () => {
         },
     ])
 }
-
+//add generic employee info
 const employeePrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -78,8 +90,9 @@ const employeePrompt = () => {
     ])
 };
 
+// add engineer info
 const engineerPrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'git',
@@ -88,8 +101,9 @@ const engineerPrompt = () => {
     ])
 };
 
+//add intern info 
 const internPrompt = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'school',
@@ -98,14 +112,51 @@ const internPrompt = () => {
     ])
 };
 
-async function empHandler(){
+//init and add manager
+async function empHandler() {
     let initSetup = await setup();
-        if (initSetup.setupRes === 'Yes') {
-            let managerRes = await managerPromt();
-            let manager = new Manager(managerRes.nameMan, managerRes.idMan, managerRes.emailMan, 'Manager', managerRes.officeNum);
-        } else {
-            return;
-        };
+    if (initSetup.setupRes === 'Yes') {
+        let managerRes = await managerPromt();
+        let manager = new Manager(managerRes.nameMan, managerRes.idMan, managerRes.emailMan, 'Manager', managerRes.officeNum);
+        console.log(manager);
+        managerArr.push(manager);
+        empAdd();
+    } else {
+        return;
+    };
 }
 
-empHandler()
+//add other employees
+async function empAdd() {
+    let continueRes = await contQuestion();
+    if (continueRes.userSelect == 'Create new Engineer') {
+        console.log('test')
+        let employeeRes = await employeePrompt();
+        let engineerRes = await engineerPrompt();
+        let engineer = new Engineer(employeeRes.name, employeeRes.id, employeeRes.email, 'Engineer', engineerRes.git)
+        console.log(engineer);
+        engineerArr.push(engineer);
+    } else if (continueRes.userSelect == 'Create new Intern') {
+        let employeeRes = await employeePrompt();
+        let internRes = await internPrompt();
+        let intern = new Intern(employeeRes.name, employeeRes.id, employeeRes.email, 'Intern', internRes.school)
+        console.log(intern);
+        internArr.push(intern);
+    } else {
+        return;
+    }
+    empAdd();
+
+}
+
+module.exports = {
+    empHandler,
+    empAdd,
+    Employee,
+    Manager,
+    Engineer,
+    Intern,
+    managerArr,
+    engineerArr,
+    internArr,
+}
