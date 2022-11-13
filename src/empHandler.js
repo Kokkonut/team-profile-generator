@@ -120,7 +120,6 @@ const internPrompt = () => {
 async function empAdd() {
     let continueRes = await contQuestion();
     if (continueRes.userSelect == 'Create new Engineer') {
-        console.log('test')
         let employeeRes = await employeePrompt();
         let engineerRes = await engineerPrompt();
         let engineer = new Engineer(employeeRes.name, employeeRes.id, employeeRes.email, 'Engineer', engineerRes.git)

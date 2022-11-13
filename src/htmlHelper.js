@@ -26,7 +26,7 @@ const generateEngineer = (engineer) => {
           <p>Role: ${engineer.role}</p>
           <p>ID: ${engineer.id}</p>
           <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-          <p>GitHub: <a href="https://www.github.com/${engineer.git}" target="_blank">${engineer.git}</a></p>
+          <p>GitHub: <a href="https://www.github.com/${engineer.github}" target="_blank">${engineer.github}</a></p>
         </div>
       </div>
     </div>
